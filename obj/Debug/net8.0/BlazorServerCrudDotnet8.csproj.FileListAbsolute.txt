@@ -133,3 +133,4 @@ D:\BlazorServerCrudDotnet8\obj\Debug\net8.0\refint\BlazorServerCrudDotnet8.dll
 D:\BlazorServerCrudDotnet8\obj\Debug\net8.0\BlazorServerCrudDotnet8.pdb
 D:\BlazorServerCrudDotnet8\obj\Debug\net8.0\BlazorServerCrudDotnet8.genruntimeconfig.cache
 D:\BlazorServerCrudDotnet8\obj\Debug\net8.0\ref\BlazorServerCrudDotnet8.dll
+D:\BlazorServerCrudDotnet8\obj\Debug\net8.0\BlazorServerCrudDotnet8.sourcelink.json

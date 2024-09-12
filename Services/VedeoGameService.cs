@@ -18,5 +18,38 @@ namespace BlazorServerCrudDotnet8.Services
             return result;
         }
 
+        public async Task AddGameAsync(VideoGame game)
+        {
+            _context.VideoGames.Add(game);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteGameAsync(int id)
+        {
+            var game = await _context.VideoGames.FindAsync(id);
+            if(game != null)
+            {
+                _context.VideoGames.Remove(game);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<VideoGame> GetGameByIdAsync(int id)
+        {
+            var game = await _context.VideoGames.FindAsync(id);
+            return game;
+        }
+
+        public async Task UpdateGameAsync(VideoGame game, int id)
+        {
+            var dbGame = await _context.VideoGames.FindAsync(id);
+            if(dbGame != null)
+            {
+                dbGame.Title = game.Title;
+                dbGame.Publisher = game.Publisher;
+                dbGame.ReleaseYear = game.ReleaseYear;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

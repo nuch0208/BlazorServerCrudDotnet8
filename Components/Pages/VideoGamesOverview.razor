@@ -1,5 +1,7 @@
 @page "/games"
 @inject IVideoGameService VideoGameService
+@inject NavigationManager NavigationManager
+@rendermode @(new InteractiveServerRenderMode(prerender: false));
 
 
 <PageTitle>VideoGame</PageTitle>
@@ -17,6 +19,8 @@ else
                 <th>Title</th>
                 <th>Publisher</th>
                 <th>Release Year</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +30,14 @@ else
                     <td>@game.Title</td>
                     <td>@game.Publisher</td>
                     <td>@game.ReleaseYear</td>
+                    <td><button class="btn btn-primary" @onclick="@(() => EditGame(game.Id))">Edit</button></td>
+                    <td><button class="btn btn-danger" @onclick="@(() => DeleteGame(game.Id))">Delete</button></td>
                 </tr>
             }
         </tbody>
     </table>
+
+    <button @onclick="AddGame" class="btn btn-primary">Add a New Game</button>
 }
 
 @code {
@@ -39,5 +47,21 @@ else
     {
         await Task.Delay(500);
         VideoGames = await VideoGameService.GetAllGamesAsync();
+    }
+
+    void EditGame(int id)
+    {
+        NavigationManager.NavigateTo($"/edit-game/{id}");
+    }
+
+    async Task DeleteGame(int id)
+    {
+        await VideoGameService.DeleteGameAsync(id);
+        VideoGames = await VideoGameService.GetAllGamesAsync();
+    }
+
+     void AddGame()
+    {
+        NavigationManager.NavigateTo("/edit-game/");
     }
 }
